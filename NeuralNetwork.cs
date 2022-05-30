@@ -8,7 +8,7 @@ namespace Neural_Network
     public class NeuralNetwork
     {
         public Topology Topology { get; }
-        List<Layer> Layers { get; }
+        public List<Layer> Layers { get; }
 
         public NeuralNetwork(Topology Topology)
         {

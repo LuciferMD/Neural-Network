@@ -37,12 +37,19 @@ namespace Neural_Network
                 sum += inputs[i] * Weights[i];
             }
 
-            Output = Sigmoid(sum);
+            if (NeuronType != NeuronType.Input)
+            {
+                Output = Sigmoid(sum);
+            }
+            else //for 1 lvl weight always = 1 or 0
+            {
+                Output = sum;
+            }
             return Output;
         }
         private double Sigmoid(double x)
         {
-            double result = 1.0 / (1.0 + Math.Pow(Math.E,-x)); //to "smooth out" the values of a certain value.
+            double result = 1.0 / (1.0 + Math.Pow(Math.E, -x)); //to "smooth out" the values of a certain value.
             return result;
         }
         public override string ToString() //For Debuging
