@@ -10,7 +10,7 @@ namespace Neural_Network
         public NeuronType NeuronType { get; }
         public double Output { get; private set; }
 
-        public Neuron(int inputCount, NeuronType type = NeuronType.Normal)
+        public Neuron(int? inputCount, NeuronType type = NeuronType.Normal)
         {
             NeuronType = type;
             Weights = new List<double>();
@@ -21,7 +21,15 @@ namespace Neural_Network
             }
 
         }
-        public double FoodForward(List<double> inputs) //feed forward neural networks  (FF)
+
+        public void SetWights(params double[] weights) //delete
+        {
+            for (int i = 0; i < weights.Length; i++)
+            {
+                this.Weights[i] = weights[i];
+            }
+        }
+        public double FeedForward(List<double> inputs) //feed forward neural networks  (FF)
         {
             double sum = 0;
             for (int i = 0; i < inputs.Count; i++)
@@ -32,13 +40,11 @@ namespace Neural_Network
             Output = Sigmoid(sum);
             return Output;
         }
-
         private double Sigmoid(double x)
         {
             double result = 1.0 / (1.0 + Math.Pow(Math.E,-x)); //to "smooth out" the values of a certain value.
             return result;
         }
-
         public override string ToString() //For Debuging
         {
             return Output.ToString();
