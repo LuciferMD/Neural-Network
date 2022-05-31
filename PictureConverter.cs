@@ -30,7 +30,7 @@ namespace Neural_Network
             return result;
         }
 
-        private double Brightness(Color color) 
+        private double Brightness(Color color)
         {         
             var result = 0.299 * color.R + 0.587 * color.G + 0.114 * color.B;
             return result < boundary ? 0 : 1;
