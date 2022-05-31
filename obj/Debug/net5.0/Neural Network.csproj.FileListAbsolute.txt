@@ -1,0 +1,7 @@
+D:\Курсач\Neural Network\obj\Debug\net5.0\Neural Network.csproj.AssemblyReference.cache
+D:\Курсач\Neural Network\obj\Debug\net5.0\Neural_Network.Properties.Resources.resources
+D:\Курсач\Neural Network\obj\Debug\net5.0\Neural Network.csproj.GenerateResource.cache
+D:\Курсач\Neural Network\obj\Debug\net5.0\Neural Network.GeneratedMSBuildEditorConfig.editorconfig
+D:\Курсач\Neural Network\obj\Debug\net5.0\Neural Network.AssemblyInfoInputs.cache
+D:\Курсач\Neural Network\obj\Debug\net5.0\Neural Network.AssemblyInfo.cs
+D:\Курсач\Neural Network\obj\Debug\net5.0\Neural Network.csproj.CoreCompileInputs.cache

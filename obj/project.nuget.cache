@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZKb+V7dGTkLHKxqMjX8IfDK/AeGn98lncSanxcgoClX70fFockLvZTdNH0sfnUH789RMTnBorVkXV/nrkrB18A==",
+  "success": true,
+  "projectFilePath": "D:\\Курсач\\Neural Network\\Neural Network.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

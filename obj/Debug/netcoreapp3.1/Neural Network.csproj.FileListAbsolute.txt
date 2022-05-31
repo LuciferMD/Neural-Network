@@ -1,0 +1,22 @@
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\Neural Network.exe
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\Neural Network.deps.json
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\Neural Network.runtimeconfig.json
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\Neural Network.runtimeconfig.dev.json
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\Neural Network.dll
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\Neural Network.pdb
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural Network.csproj.AssemblyReference.cache
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural Network.GeneratedMSBuildEditorConfig.editorconfig
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural Network.AssemblyInfoInputs.cache
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural Network.AssemblyInfo.cs
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural Network.csproj.CoreCompileInputs.cache
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural Network.dll
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural Network.pdb
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural Network.genruntimeconfig.cache
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural_Network.Properties.Resources.resources
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural Network.csproj.GenerateResource.cache
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+D:\Курсач\Neural Network\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+D:\Курсач\Neural Network\obj\Debug\netcoreapp3.1\Neural Network.csproj.CopyComplete
