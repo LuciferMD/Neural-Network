@@ -107,20 +107,95 @@ namespace Neural_Network
             }
         }
 
-        public double Learn(List<Tuple<double,double []>> dataset, int epoch) //epoch - number of passing BackPropagation for all network
+        public double Learn(double[] expected, double[,] inputs, int epoch) //epoch - number of passing BackPropagation for all network
         {
             double error = 0;
+
             for (int i = 0; i < epoch; i++)
             {
-                foreach (var data in dataset)
+                for (int j = 0; j < expected.Length; j++)
                 {
-                    error += BackPropagation(data.Item1, data.Item2); //data.Item1 - expected //data.Item2 //double[] inputs
+                    var output = expected[j];
+                    var input = GetRow(inputs, j);
+
+                    error += BackPropagation(output, input); 
+
                 }
             }
+
 
             var result = error / epoch; //average mistake 
             return result;
         }
+        public static double[] GetRow(double[,] matrix, int row)
+        {
+            var columns = matrix.GetLength(1);
+            var array = new double[columns];
+            for (int i = 0; i < columns; ++i)
+                array[i] = matrix[row, i];
+            return array;
+        }
+        private double[,] Scaling(double[,] inputs) //Масштабирование
+        {
+            var result = new double[inputs.GetLength(0), inputs.GetLength(1)];
+
+            for (int column = 0; column < inputs.GetLength(1); column++)
+            {
+                var min = inputs[0, column];
+                var max = inputs[0, column];
+                for (int row = 1; row < inputs.GetLength(0); row++) //calculate min and max number for scaling for each column
+                {
+                    var item = inputs[row, column];
+                    if (item < min)
+                    {
+                        min = item;
+                    }
+
+                    if (item > max)
+                    {
+                        max = item;
+                    }
+                }
+                var devider = (max - min);
+                for (int row = 0; row < inputs.GetLength(0); row++) // and scaling each value by formula
+                {
+                    result[row, column] = (inputs[row, column] - min) / devider;
+                }
+            }
+            return result;
+        }
+        private double[,] Normalization(double[,] inputs)
+        {
+            var result = new double[inputs.GetLength(0), inputs.GetLength(1)];
+            for (int column = 0; column < inputs.GetLength(1); column++)
+            {
+                double sum = 0;
+
+                //calculate average number of signal
+                for (int row = 0; row < inputs.GetLength(0); row++)
+                {
+                    sum += inputs[row, column];
+                }
+                var average = sum / inputs.GetLength(0);
+
+                //standard square deviation neuron
+                double error = 0;
+                for (int row = 0; row < inputs.GetLength(0); row++)
+                {
+                    error += Math.Pow((inputs[row, column]), 2);
+                }
+                var standartError = Math.Sqrt(error / inputs.GetLength(0));
+
+                //output element
+                for (int row = 0; row < inputs.GetLength(0); row++)
+                {
+                    result[row, column] = (inputs[row, column] - average) / standartError;
+                }
+            }
+            return result;
+        }
+
+
         private double BackPropagation(double expected, params double[] inputs) // revers propagation of the error
         {
             var actual = FeedForward(inputs).Output;
@@ -132,14 +207,14 @@ namespace Neural_Network
                 neuron.Learn(difference, Topology.LearningRate);
             }
 
-            for (int i = Layers.Count-2; i >=0 ; i--)  //-1 - we start from 0//-2 we already teach last layer
+            for (int i = Layers.Count - 2; i >= 0; i--)  //-1 - we start from 0//-2 we already teach last layer
             {
                 var layer = Layers[i];
                 var previousLayer = Layers[i + 1];
 
                 for (int j = 0; j < layer.NeuronCount; j++) //for check all neurons on current level
                 {
-                    var neuron = layer.Neurons[i]; 
+                    var neuron = layer.Neurons[i];
 
                     for (int k = 0; k < previousLayer.NeuronCount; k++)   //number of input == number of output on previos level
                     {
