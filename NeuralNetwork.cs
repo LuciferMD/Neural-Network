@@ -21,7 +21,7 @@ namespace Neural_Network
             CreateOutputLayer();
         }
 
-        public Neuron FeedForward(params double[] inputSignals) //inputSiganls = Topology.InputCount !!!
+        public Neuron Predict(params double[] inputSignals) //inputSiganls = Topology.InputCount !!!
         {
            /// var signals = Normalization(inputSignals);
 
@@ -202,7 +202,7 @@ namespace Neural_Network
 
         private double BackPropagation(double expected, params double[] inputs) // revers propagation of the error
         {
-            var actual = FeedForward(inputs).Output;
+            var actual = Predict(inputs).Output;
 
             var difference = actual - expected;
 
