@@ -23,6 +23,8 @@ namespace Neural_Network
 
         public Neuron FeedForward(params double[] inputSignals) //inputSiganls = Topology.InputCount !!!
         {
+           /// var signals = Normalization(inputSignals);
+
             SendSignalsToInputNeurons(inputSignals); //send first data to network
             FeedForwardAllLayersAfterInput();
 
@@ -109,6 +111,8 @@ namespace Neural_Network
 
         public double Learn(double[] expected, double[,] inputs, int epoch) //epoch - number of passing BackPropagation for all network
         {
+            var signals = Normalization(inputs);
+
             double error = 0;
 
             for (int i = 0; i < epoch; i++)
@@ -116,7 +120,7 @@ namespace Neural_Network
                 for (int j = 0; j < expected.Length; j++)
                 {
                     var output = expected[j];
-                    var input = GetRow(inputs, j);
+                    var input = GetRow(signals, j);
 
                     error += BackPropagation(output, input); 
 
