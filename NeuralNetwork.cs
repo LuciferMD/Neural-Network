@@ -21,7 +21,7 @@ namespace Neural_Network
             CreateOutputLayer();
         }
 
-        public Neuron FeedForward(List<double> inputSignals) //inputSiganls = Topology.InputCount !!!
+        public Neuron FeedForward(params double[] inputSignals) //inputSiganls = Topology.InputCount !!!
         {
             SendSignalsToInputNeurons(inputSignals); //send first data to network
             FeedForwardAllLayersAfterInput();
@@ -50,9 +50,9 @@ namespace Neural_Network
             }
         }
 
-        private void SendSignalsToInputNeurons(List<double> inputSignals)
+        private void SendSignalsToInputNeurons(params double[] inputSignals)
         {
-            for (int i = 0; i < inputSignals.Count; i++)
+            for (int i = 0; i < inputSignals.Length; i++)
             {
                 var signal = new List<double>() { inputSignals[i] };
                 var neuron = Layers[0].Neurons[i];
@@ -80,7 +80,7 @@ namespace Neural_Network
 
             for (int i = 0; i < Topology.OutputCount; i++)
             {
-                Neuron neuron = new Neuron(lastLayer.Count, NeuronType.Output);
+                Neuron neuron = new Neuron(lastLayer.NeuronCount, NeuronType.Output);
                 outputNeurons.Add(neuron);
             }
 
@@ -97,7 +97,7 @@ namespace Neural_Network
 
                 for (int i = 0; i < Topology.HiddenLayers[j]; i++) //number neurons in hidden j layer
                 {
-                    Neuron neuron = new Neuron(lastLayer.Count);
+                    Neuron neuron = new Neuron(lastLayer.NeuronCount);
                     hiddenNeurons.Add(neuron);
                 }
 
@@ -105,6 +105,53 @@ namespace Neural_Network
 
                 this.Layers.Add(hiddenLayer);
             }
+        }
+
+        public double Learn(List<Tuple<double,double []>> dataset, int epoch) //epoch - number of passing BackPropagation for all network
+        {
+            double error = 0;
+            for (int i = 0; i < epoch; i++)
+            {
+                foreach (var data in dataset)
+                {
+                    error += BackPropagation(data.Item1, data.Item2); //data.Item1 - expected //data.Item2 //double[] inputs
+                }
+            }
+
+            var result = error / epoch; //average mistake 
+            return result;
+        }
+        private double BackPropagation(double expected, params double[] inputs) // revers propagation of the error
+        {
+            var actual = FeedForward(inputs).Output;
+
+            var difference = actual - expected;
+
+            foreach (var neuron in Layers[^1].Neurons) //for last lvl
+            {
+                neuron.Learn(difference, Topology.LearningRate);
+            }
+
+            for (int i = Layers.Count-2; i >=0 ; i--)  //-1 - we start from 0//-2 we already teach last layer
+            {
+                var layer = Layers[i];
+                var previousLayer = Layers[i + 1];
+
+                for (int j = 0; j < layer.NeuronCount; j++) //for check all neurons on current level
+                {
+                    var neuron = layer.Neurons[i]; 
+
+                    for (int k = 0; k < previousLayer.NeuronCount; k++)   //number of input == number of output on previos level
+                    {
+                        var previousNeuron = previousLayer.Neurons[k];
+
+                        var error = previousNeuron.Weights[i] * previousNeuron.Delta; // i = current neuron
+                        neuron.Learn(error, Topology.LearningRate);
+                    }
+                }
+            }
+
+            return difference * difference; // to avoid negative number and increase error
         }
 
 
